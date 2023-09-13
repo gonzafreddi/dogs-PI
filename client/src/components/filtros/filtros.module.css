@@ -1,0 +1,24 @@
+.cont{
+    /* border: solid black 5px; */
+    display: flex;
+    
+   
+}
+
+.cont select{
+
+    border: none;
+    font-size: 15px;
+    border-bottom: 1px solid black;
+    height: 100%;
+    margin-bottom: 20px;
+}
+
+.cont option{
+    
+}
+
+.cont option:focus{
+    color:red;
+    margin-top: 20px;
+}

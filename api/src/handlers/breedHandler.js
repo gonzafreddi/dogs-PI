@@ -6,9 +6,15 @@
 
 const getBreedController = require("../controllers/getBreedController")
 const getByIdController = require("../controllers/getByIdController")
+const getByNameController = require("../controllers/getByNameController")
+const createDogController = require("../controllers/createDogController")
+const getDbController = require("../controllers/getDbController")
+const getAllBredd = require("../controllers/getAllBredd")
+const getNameDb = require("../controllers/getNameDb")
 
 const getBreedHandler = async (req, res)=>{
    try {
+    
     let apiResponse = await getBreedController()
     return res.status(200).send(apiResponse)
    } catch (error) {
@@ -20,12 +26,61 @@ const getByIdHandler = async(req, res)=>{
     let {id} = req.params
     
     try {
-        console.log(id,"consol log del handler")
         let apiResponse = await getByIdController(id)
-        res.status(200).send(apiResponse)
+       return res.status(200).send(apiResponse)
     } catch (error) {
-        res.status(400).send("hanler error getByIDhandler")
+        return res.status(400).send(error.message)
     }
 }
 
-module.exports = { getBreedHandler, getByIdHandler }
+const getByName = async(req, res)=>{
+    let {name} = req.query
+    
+    try {
+        const responseApi = await getByNameController(name);
+        return res.status(200).send(responseApi);
+        
+    } catch (error) {
+        return res.status(400).send(error.message)
+    }
+}
+
+const getDbBreed = async(req, res)=>{
+    try {
+        const responseDb = await getDbController()
+        return res.status(200).send(responseDb)
+    } catch (error) {
+        return res.status(400).send(error.message)
+    }
+}
+const getAllDogs = async(req, res)=>{
+    try {
+        const responseAll = await getAllBredd()
+        return res.status(200).send(responseAll)
+    } catch (error) {
+        return console.log("error en el handler de get all")
+    }
+}
+
+const getDbName = async(req, res)=>{
+    let {name} = req.query
+   
+    try {
+        console.log(name);
+     const response = await getNameDb(name)
+     return res.status(200).send(response)   
+    } catch (error) {
+        return error
+    }
+}
+const postCreateDogHandler = async(req, res)=>{
+    try {
+       const dog = req.body
+       console.log(dog);
+       const responseDog = await createDogController(dog)
+       return res.status(200).send(responseDog)
+    } catch (error) {
+        return res.status(400).send(error.message)
+    }
+}
+module.exports = { getBreedHandler, getDbName,getAllDogs ,getByIdHandler , getByName, postCreateDogHandler, postCreateDogHandler, getDbBreed}

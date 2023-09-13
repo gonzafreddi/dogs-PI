@@ -16,6 +16,7 @@ const getBreedController = async () => {
             life_span: e.life_span,
             height: e.height.metric,
             weight: e.weight.metric,
+            image: `https://cdn2.thedogapi.com/images/${e.reference_image_id}.jpg`,
             description: e?.description
         }
      })  
