@@ -6,7 +6,7 @@ import styles from "./home.module.css"
 export default function Home(){
     
     return(<div className={styles.conteiner}>
-
+      
       <div className={styles.cards}>  <Cards/></div>
 
     </div>)

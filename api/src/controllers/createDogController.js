@@ -4,7 +4,7 @@ const {Dog, Temperaments} = require("../db.js")
 const createDogController = async(dog)=>{
     let {name,  image,  pesoMin,pesoMax,altoMin,altoMaxim, years, temperaments} = dog
     try {
-        // console.log(Object.getOwnPropertyNames(Dog.prototype));
+       
         let finDog = await Dog.findOne({where:{name}})
         if(finDog)return "ya exite el Perro"
        
@@ -34,11 +34,56 @@ const createDogController = async(dog)=>{
     
         return newDog
     } catch (error) {
-        error.message
+       return error.message
     }
 }
 
 module.exports = createDogController
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // if (temperaments && temperaments.length > 0) {
         //   
         //     console.log(selectedTemperaments)

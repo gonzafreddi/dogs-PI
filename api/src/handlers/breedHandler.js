@@ -18,7 +18,7 @@ const getBreedHandler = async (req, res)=>{
     let apiResponse = await getBreedController()
     return res.status(200).send(apiResponse)
    } catch (error) {
-    return res.status(400).send("error en el handler")
+    return res.status(400).send(error.message)
    }
 }
 
@@ -37,7 +37,9 @@ const getByName = async(req, res)=>{
     let {name} = req.query
     
     try {
+        
         const responseApi = await getByNameController(name);
+        console.log(responseApi);
         return res.status(200).send(responseApi);
         
     } catch (error) {
@@ -58,25 +60,23 @@ const getAllDogs = async(req, res)=>{
         const responseAll = await getAllBredd()
         return res.status(200).send(responseAll)
     } catch (error) {
-        return console.log("error en el handler de get all")
+        return res.status(400).send(error.message)
     }
 }
 
 const getDbName = async(req, res)=>{
     let {name} = req.query
-   
     try {
-        console.log(name);
-     const response = await getNameDb(name)
-     return res.status(200).send(response)   
+         const response = await getNameDb(name)
+         return res.status(200).send(response)   
     } catch (error) {
-        return error
+        return res.status(400).send(error.message)
     }
 }
 const postCreateDogHandler = async(req, res)=>{
     try {
        const dog = req.body
-       console.log(dog);
+
        const responseDog = await createDogController(dog)
        return res.status(200).send(responseDog)
     } catch (error) {

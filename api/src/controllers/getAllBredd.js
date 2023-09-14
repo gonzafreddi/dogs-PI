@@ -9,7 +9,7 @@ const getAllBredd = async()=>{
     let allDogs = [...dogsDb].concat(dogsApi)
    return allDogs;
    } catch (error) {
-    return error
+    return error.message
    } 
 }
 

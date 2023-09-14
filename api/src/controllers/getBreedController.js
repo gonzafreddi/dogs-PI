@@ -25,7 +25,7 @@ const getBreedController = async () => {
       // Enviar los datos obtenidos en la respuesta
       return apiInfo
     } catch (error) {
-        console.log("error en el controller")
+        return error
     }
 }
 

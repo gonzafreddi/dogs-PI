@@ -9,6 +9,7 @@ export default function Detail(){
   const {name} = useParams()
   const dispatch = useDispatch()
   const dogDetail = useSelector((state)=>state.dogDetail)
+  console.log(name)
     // const [dog, setDog] = useState()
     
     // let url = `http://localhost:3001/breed/search/name?name=${name}`

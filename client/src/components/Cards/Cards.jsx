@@ -6,6 +6,7 @@ import Pagination from "../pagination/Pagination"
 import Nav from "../nav/nav"
 export default function Cards() {
     const dogs = useSelector((state) => state.dogs)
+  
     const itemsPerPage = 8
     const pages = dogs.length / itemsPerPage
     const [currentPage, setCurrentPage]= useState(1)
@@ -26,24 +27,31 @@ export default function Cards() {
     setCurrentPage(currentPage - 1)
    }
    
-    return (
-        <div className={styles.contenedor}>
+    return (<>
+
+      <div className={styles.contenedor}>
+            
         
-           <div className={styles.divConteiner}>
-           {        currentItem?.map((d) => (
-                    <Card
-                        key={d.id}
-                        name={d.name}
-                        image={d.image}
-                        weight={d.weight}
-                        temperament={d.temperament}
-                    />
-                ))
-            } </div>
-              <div>
-                <Pagination pages={pages} prevHandler={prevHandler} nextHandler={nextHandler} currentPage={currentPage}/>
-                </div>
-          
-        </div>
+            <div className={styles.divConteiner}>
+            {        currentItem?.map((d) => (
+                     <Card
+                         key={d.id}
+                         name={d.name}
+                         image={d.image}
+                         weight={d.weight}
+                         pesoMin={d.pesoMin}
+                         pesoMax={d.pesoMax}
+                        temperaments={d.temperaments}
+                         temperament={d.temperament}
+                     />
+                 ))
+             } </div>
+               <div>
+                 <Pagination pages={pages} prevHandler={prevHandler} nextHandler={nextHandler} currentPage={currentPage}/>
+                 </div>
+           
+         </div>
+    
+    </>
     )
 }

@@ -20,6 +20,7 @@ export const getByName =(name)=>{
     return async(dispatch)=>{
         try {
             const  response  = await axios.get(`http://localhost:3001/breed/search/name?name=${name}`);
+            console.log("log del action", response.data)
             return dispatch({
                 type: GET_BY_NAME,
                 payload: response.data
