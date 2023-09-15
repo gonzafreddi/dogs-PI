@@ -42,7 +42,8 @@
         return(<div className={styles.cont}>
         <div >
             
-        <select value={selectedType} onChange={handleType}>
+        <select placeholder="select" value={selectedType} onChange={handleType}>
+        <option value="" disabled selected hidden>Seleccione una raza</option>
          <option selected value="all">all</option>
          {types?.map((type, index) =>
          <option key={index} value={type}>{type}</option>
@@ -53,6 +54,7 @@
         <div>
           
             <select  value={order} onChange={handleOrder}>
+            <option value="" disabled selected hidden>Orden alfabetico</option>
                 <option >acd</option>
                 <option >dec</option>
             </select>
@@ -62,13 +64,14 @@
         <div>
           
             <select value={origin} onChange={getOrigin}>
-               
+            <option value="" disabled selected hidden>Seleccione origen</option>
                 <option value={"database"}>api</option>
                 <option value={"api"} >database</option>
             </select>
         </div>
         <div>
             <select value={weight} onChange={orderByweight}>
+            <option value="" disabled selected hidden>Ordenar por peso</option>
                 <option >mayor</option>
                 <option >menor</option>
             </select>

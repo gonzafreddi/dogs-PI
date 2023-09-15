@@ -1,5 +1,5 @@
 import axios from "axios"
-import { GET_ALL_DOGS , GET_BY_NAME, GET_TEMPERAMENTS, FILTER_TEMPERAMENT, ORDER_BY_NAME, OREDE_BY_WEIGHT, GET_DETAIL_API, GET_DETAIL_DB, GET_ORIGIN_API, GET_ORIGIN_DB} from "./action_types"
+import { GET_ALL_DOGS , GET_BY_NAME, GET_TEMPERAMENTS, FILTER_TEMPERAMENT, ORDER_BY_NAME, OREDE_BY_WEIGHT, GET_DETAIL_API, GET_DETAIL_DB, GET_ORIGIN_API, GET_ORIGIN_DB, RESET_FILTER} from "./action_types"
 
 export const getAllDogs = ()=>{
 return async(dispatch)=>{
@@ -17,18 +17,22 @@ return async(dispatch)=>{
 }
 
 export const getByName =(name)=>{
-    return async(dispatch)=>{
-        try {
-            const  response  = await axios.get(`http://localhost:3001/breed/search/name?name=${name}`);
-            console.log("log del action", response.data)
-            return dispatch({
-                type: GET_BY_NAME,
-                payload: response.data
-            }); 
-        } catch (error) {
-            return (error.message)
+    if(name){
+        return async(dispatch)=>{
+            try {
+                const  response  = await axios.get(`http://localhost:3001/breed/search/name?name=${name}`);
+                console.log("log del action", response.data)
+                return dispatch({
+                    type: GET_BY_NAME,
+                    payload: response.data
+                }); 
+            } catch (error) {
+                return (error.message)
+            }
         }
-    }
+
+    }else return
+  
 }
 
 export const getTemperaments = ()=>{
@@ -101,7 +105,11 @@ return async function (dispatch){
     }
 }
 }
-
+export const resetFilter = ()=>{
+    return{
+        type: RESET_FILTER,
+    }
+}
 export const getOriginAction = (origin)=>{
     return async function (dispatch){
         try {

@@ -1,4 +1,4 @@
-import { GET_ALL_DOGS, GET_BY_NAME, GET_TEMPERAMENTS, FILTER_TEMPERAMENT, ORDER_BY_NAME, OREDE_BY_WEIGHT, GET_DETAIL_DB, GET_DETAIL_API,  GET_ORIGIN_API, GET_ORIGIN_DB} from "../action/action_types";
+import { GET_ALL_DOGS, GET_BY_NAME, GET_TEMPERAMENTS, FILTER_TEMPERAMENT, ORDER_BY_NAME, OREDE_BY_WEIGHT, GET_DETAIL_DB, GET_DETAIL_API,  GET_ORIGIN_API, GET_ORIGIN_DB, RESET_FILTER} from "../action/action_types";
 
 let initialState = {
     dogs:[],
@@ -9,9 +9,6 @@ let initialState = {
 }
 
 const reducer = (state=initialState, action)=>{
-    console.log(action)
-    console.log(action.payload,"og de el payload")
-    const globalCopy = [...state.dogs]
     
     switch (action.type) {
         case GET_ALL_DOGS:
@@ -106,6 +103,11 @@ const reducer = (state=initialState, action)=>{
                 return{
                     ...state,
                     dogs: action.payload
+                }
+            case RESET_FILTER:
+                return{
+                    ...state,
+                    dogs: state.allDogs
                 }
         default:
             return state

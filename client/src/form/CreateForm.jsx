@@ -34,19 +34,7 @@ export default function CreateForm(){
 
     const types = useSelector((state)=> state.types)
     
-//   const disableFunction = ()=>{
-//     let disabledAux = true;
-//     for(let err in error){
-//       if(error[err]==="") {
-//         disabledAux = false
-//       }
-//       else{
-//         disabledAux = true;
-//         break;
-//       }
-//     }
-//     return disabledAux;
-//   }
+
   const disableFunction = () => {
     for (let err in error) {
       if (error[err] !== "") {
@@ -80,10 +68,17 @@ export default function CreateForm(){
         dispatch(postDog(info))
         console.log(info);
       }
-   console.log(error);
+   console.log(info);
+   
+   const handleDelete = (e) => {
+    setInfo((prevState) => ({
+      ...prevState,
+      temperaments: prevState.temperaments.filter((temp) => temp !== e.target.id),
+    }));
+  };
 
     return(<div className={styles.conteiner}>
-
+<a className={styles.buttons} href="/home"> <p >Home</p></a>
         <div className={styles.title}>
         <i class="fa-solid fa-dog"></i>
         <p>DoggoConnect</p>
@@ -118,7 +113,10 @@ export default function CreateForm(){
             </select>   
             <div>  
             {
-                info.temperaments?.map((e,index)=> <div key={index}>{e}</div>)
+                info.temperaments?.map((e,index)=> <div key={index}>
+                  <label>{e}</label> <button onClick={handleDelete} id={e}>X</button>
+                  </div>)
+               
              }
                 </div>
             <span>{error.years}</span>         

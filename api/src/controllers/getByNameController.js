@@ -25,14 +25,22 @@ const getByNameController = async(name)=>{
                     description: e?.description
                 }
              })
+           console.log(apiInfo.length);
+           
+         if(finDb[0] === null && apiInfo.length === 0 ){
+            console.log("entre");
+            return "perro no encontrado"
+         }else{
             let allData  =  [...apiInfo].concat(finDb)
-         
-             return allData
+            console.log("else log");
+            return allData
+         }
+             
         
 
      
     } catch (error) {
-        return error
+        return "dog no encontrado"
     }
 }
 
