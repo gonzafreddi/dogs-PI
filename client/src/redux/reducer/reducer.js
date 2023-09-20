@@ -80,11 +80,8 @@ const reducer = (state=initialState, action)=>{
                 let orderWeight = [...state.dogs]
                 
                 orderWeight.sort((a,b)=>{
-                        let weightA = parseInt(a.weight);
-                        let weightB = parseInt(b.weight);
-                
-
-                
+                 let weightA = a.pesoMin? parseInt(a.pesoMin) : parseInt(a.weight);
+                 let weightB = b.pesoMin? parseInt(b.pesoMin) : parseInt(b.weight);
                     if(action.payload === "menor"){
                         if(weightA > weightB ) return 1
                         if(weightA < weightB ) return -1
