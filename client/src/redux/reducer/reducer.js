@@ -9,7 +9,7 @@ let initialState = {
 }
 
 const reducer = (state=initialState, action)=>{
-    
+   
     switch (action.type) {
         case GET_ALL_DOGS:
             return{
@@ -28,26 +28,43 @@ const reducer = (state=initialState, action)=>{
                 ...state,
                 types: action.payload
             }
+        // case FILTER_TEMPERAMENT:
+        //     let copy = state.allDogs
+        //     let filterTemp = action.payload === "all" ? copy : state.allDogs.filter((e) =>  e.temperaments.name.map(e=>e.name).includes(action.payload) ||e.temperament?.includes(action.payload))
+        //     console.log(filterTemp)
+        //     return{
+        //         ...state,
+        //         dogs: filterTemp
+        //     }
+            
+
         case FILTER_TEMPERAMENT:
-            let copy = state.allDogs
-            let filterTemp = action.payload === "all" ? copy : state.allDogs.filter((e) => e.temperament?.includes(action.payload))
-            console.log(filterTemp)
-            return{
-                ...state,
-                dogs: filterTemp
-            }
+        const copy = [...state.allDogs]; // Hacer una copia del array para no mutar el estado original
+        const filterTemp = action.payload === "all" 
+          ? copy 
+          : copy.filter((e) => {
+              // Mapear los nombres de temperamentos y convertirlos a minúsculas
+              const temperamentNames = e.temperaments?.map((temperament) => temperament.name);
+
+              // Comprobar si el payload se encuentra en los nombres de temperamentos o en la cadena temperament
+              return (
+                temperamentNames?.includes(action.payload) ||
+                e.temperament?.includes(action.payload)
+              );
+             });
+             return {
+               ...state,
+               dogs: filterTemp,
+             };
         case ORDER_BY_NAME:
             let order = [...state.dogs]
 
             order.sort((a,b)=>{
                 if(action.payload === "acd"){
-                    //menor a mayor 
-                   console.log("acendente");
                     if(a.name> b.name) return 1
                     if(a.name< b.name) return -1
                     return 0;
                 }else{
-                    console.log("ordenando donde si anda");
                     if(a.name > b.name) return -1
                     if(a.name < b.name) return 1
                     return 0
@@ -61,35 +78,34 @@ const reducer = (state=initialState, action)=>{
 
             case OREDE_BY_WEIGHT:
                 let orderWeight = [...state.dogs]
-
+                
                 orderWeight.sort((a,b)=>{
-                        let weightA = parseFloat(a.weight);
-                        let weightB = parseFloat(b.weight);
+                        let weightA = parseInt(a.weight);
+                        let weightB = parseInt(b.weight);
+                
+
+                
                     if(action.payload === "menor"){
-                        console.log("menor organizado");
-                        
                         if(weightA > weightB ) return 1
                         if(weightA < weightB ) return -1
                         return 0
                     }else{
-                        console.log("mayor");
                         if(weightA > weightB ) return -1
                         if(weightA < weightB ) return 1
                         return 0
                     }
                 })
+                
             return{
                 ...state,
                 dogs: orderWeight
             }
             case GET_DETAIL_API:
-                console.log("detasil de la api")
                 return{
                     ...state,
                     dogDetail: action.payload
                 }
             case GET_DETAIL_DB:
-                console.log("entre en el detail de la database");
                 return{
                     ...state,
                     dogDetail: action.payload
@@ -112,6 +128,7 @@ const reducer = (state=initialState, action)=>{
         default:
             return state
     }
+    
 }
 
 

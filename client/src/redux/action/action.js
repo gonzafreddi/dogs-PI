@@ -78,7 +78,7 @@ export function postDog(payload) {
         const response = await axios.post('http://localhost:3001/breed/create', payload);
         return console.log(response);;
        } catch (error) {
-        console.log("error al crear el dog")
+        return error.message
        }
     }
 }

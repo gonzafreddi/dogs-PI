@@ -1,0 +1,14 @@
+.conteiner{
+   
+    display: flex;
+    height: 80vh;
+    width: 1700px;
+    justify-content: center;
+    align-items: center;
+}
+
+.info{
+    font-size: xx-large;
+    color: #991766;
+    margin-left: 180px;
+}

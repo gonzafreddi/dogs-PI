@@ -9,24 +9,7 @@ export default function Detail(){
   const {name} = useParams()
   const dispatch = useDispatch()
   const dogDetail = useSelector((state)=>state.dogDetail)
-  console.log(name)
-    // const [dog, setDog] = useState()
-    
-    // let url = `http://localhost:3001/breed/search/name?name=${name}`
-    // console.log(name);
 
-    // const response = async ()=>{
-    //   let info = await axios(url)
-    //   console.log(info)
-    //   if(info.data){
-    //     setDog(info)
-    //   }
-    //   if(Array.isArray(info.data)){
-    //     setDog(info.data[0])
-    //   }
-    //   console.log(dog);
-     
-    // }
   
     
     useEffect(()=>{
@@ -35,7 +18,7 @@ export default function Detail(){
         dispatch(getDogDetail())
       }
     },[name])
-   
+   console.log(dogDetail.temperaments?.map(e=> e.name))
     return (
         <div className={styles.conteiner}>
         
@@ -49,7 +32,7 @@ export default function Detail(){
               <div className={styles.title}><h1>{dogDetail.name}</h1></div>
               <h4>ID: {dogDetail.id}</h4>
               <p>Breed Group:{dogDetail?.breed_group}</p>
-              <p>Temperment: {dogDetail.temperament}</p>
+              <p>Temperment: {dogDetail.temperament} </p>
               <p>Life: {dogDetail.life_span}</p>
               <p>Height: {dogDetail.height}</p>
               <p>Weight: {dogDetail.weight}</p>
@@ -68,7 +51,7 @@ export default function Detail(){
          <div className={styles.positionInfo}>
          <h1 className={styles.title} >{dogDetail.name}</h1>
             <h4>{dogDetail.id}</h4>
-            <p>Temperaments: {dogDetail.temperaments[0].name}</p>
+            <p>Temperaments: {dogDetail.temperaments?.map(e=> e.name).join(", ")}</p>
             <p>Life: {dogDetail.years}</p>
             <p>Height: {dogDetail.altoMaxim}-{dogDetail.altoMin}</p>
             <p>Weight: {dogDetail.pesoMin}-{dogDetail.pesoMax}</p>

@@ -6,9 +6,13 @@
     import { orderLetra } from "../../redux/action/action"
     import { orderWheight } from "../../redux/action/action"
     
-    export default function FileterTemperaments(){
+    export default function FileterTemperaments({nextHandler, prevHandler, currentItem, currentPage, setCurrentPage,pages}){
+
+      
+
 
         const types = useSelector((state)=> state.types)
+   
         const [selectedType, setSelectedType] = useState('')
         const [order, setOrder] = useState("")
         const [weight, setweight] = useState("")
@@ -18,6 +22,7 @@
         const handleType = (e) => {
             const selectedValue = e.target.value
             setSelectedType(selectedValue)
+            setCurrentPage(1)
             dispatch(filterTemperament(selectedValue))
         }
         const handleOrder = (e)=>{

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import styles from "../Cards/cards.module.css";
 import Pagination from "../pagination/Pagination"
 import { useState } from "react";
+import NotSearch from "./notseach";
 
 export default function Search() {
   const searchDog = useSelector((state) => state.searchDog);
@@ -29,36 +30,28 @@ export default function Search() {
   setCurrentPage(currentPage - 1)
  }
 
-
-
-
-
-
-
-
-
-
   let contentToRender;
   let notFound;
+  // pregunto si el back en su respuesta me devuelve esto es q no econtron el perro y sino renderizo la card y mapeo hasta el anteultimo elemento pq el ultimo me llega en null
   if(searchDog === "perro no encontrado"){
-    notFound = (<div><h1>Perro no encontrado</h1></div>)
-    console.log(searchDog,"segundo log");}
- 
-   else{
+    notFound = (<div><NotSearch/></div>)
+  }else{
     contentToRender = currentItem?.map((d) => (
       <Card
-      key={d.id}
-      name={d.name}
-      image={d.image}
-      weight={d.weight}
-      pesoMin={d.pesoMin}
-      pesoMax={d.pesoMax}
-     temperaments={d.temperaments}
-      temperament={d.temperament}
+      key={d?.id}
+      name={d?.name}
+      image={d?.image}
+      weight={d?.weight}
+      pesoMin={d?.pesoMin}
+      pesoMax={d?.pesoMax}
+     temperaments={d?.temperaments}
+      temperament={d?.temperament}
       />
     ));
   }
+ 
 
+console.log(currentItem);
 
   return (
     <div className={styles.contenedor}>
@@ -68,11 +61,12 @@ export default function Search() {
         {contentToRender}
         {notFound}
 
-        <div>
-        <Pagination pages={pages} prevHandler={prevHandler} nextHandler={nextHandler} currentPage={currentPage}/>
-        </div>
+       
            
       </div>
+      <div className={styles.pag}>
+        <Pagination pages={pages} prevHandler={prevHandler} nextHandler={nextHandler} currentPage={currentPage}/>
+        </div>
     </div>
   );
 }

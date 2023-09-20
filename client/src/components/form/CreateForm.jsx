@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { postDog } from "../redux/action/action"
+import { postDog } from "../../redux/action/action"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import {validate} from "./validate"
@@ -12,10 +12,10 @@ export default function CreateForm(){
         name:"",
         temperaments:[],
         image:"", 
-        pesoMin:"",
-        pesoMax:"",
-        altoMin:"",
-        altoMaxim:"",
+        pesoMin:Number,
+        pesoMax:Number,
+        altoMin:Number,
+        altoMaxim:Number,
         years: "",
         
     })
@@ -29,6 +29,7 @@ export default function CreateForm(){
         altoMin:"",
         altoMaxim:"",
         years: "",
+        pesos: ""
     })
 
 
@@ -60,25 +61,27 @@ export default function CreateForm(){
             ...info,
             [e.target.name]:e.target.value
         }))
-       
+       console.log(e.target.value);
     }
+    
     const handleSubmit = (e) =>{
         e.preventDefault()
         window.alert("creado con exito")
         dispatch(postDog(info))
-        console.log(info);
+     
       }
-   console.log(info);
-   
+ 
+ 
    const handleDelete = (e) => {
     setInfo((prevState) => ({
       ...prevState,
       temperaments: prevState.temperaments.filter((temp) => temp !== e.target.id),
     }));
   };
-
+console.log("error",error)
+console.log(info)
     return(<div className={styles.conteiner}>
-<a className={styles.buttons} href="/home"> <p >Home</p></a>
+      
         <div className={styles.title}>
         <i class="fa-solid fa-dog"></i>
         <p>DoggoConnect</p>
@@ -91,20 +94,27 @@ export default function CreateForm(){
             <label htmlFor="">Name</label>
             <span>{error.name}</span>
             <input  onChange={handleChange} name="name" type="text" placeholder="Name" />
+            {/* <span>{error.pesos}</span> */}
             <span>{error.altoMin}</span>
             <label >Heigth min</label>
-            <input onChange={handleChange}  name="altoMin" type="text" />
+            <input onChange={handleChange}  name="altoMin" type="number" />
             <span>{error.altoMaxim}</span>
+            {/* <span>{error.pesos}</span> */}
             <label >Heigth max</label>
-            <input name="altoMaxim" onChange={handleChange}  type="text" />
+            <input name="altoMaxim" onChange={handleChange}  type="number" />
              
-            <span>{error.pesoMax}</span>
-            <label  htmlFor="">Weight max</label>
-            <input name="pesoMax" onChange={handleChange}  type="text" />
             <span>{error.pesoMin}</span>
+            {/* <span>{error.pesos}</span> */}
             <label htmlFor="">Weigth min</label>
-            <input  name="pesoMin"  onChange={handleChange}  type="text" />
+            <input  name="pesoMin"  onChange={handleChange}  type="number" />
 
+            <span>{error.pesoMax}</span>
+            {/* <span>{error.pesos}</span> */}
+            <label  htmlFor="">Weight max</label>
+            <input name="pesoMax" onChange={handleChange}  type="number" />
+          
+
+            <span>{error.temperaments}</span>
              <label >temperamento</label>
              <select onChange={handleChange}  name="temperaments">
              {types?.map((type, index) =>

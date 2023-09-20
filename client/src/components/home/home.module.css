@@ -14,3 +14,10 @@
 .cards{
     border: solid fuchsia 6px;
 } */
+
+.conteiner{
+    display: flex;
+    justify-content: center;
+    width: 99vw;
+   
+}

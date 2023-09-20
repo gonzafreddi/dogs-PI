@@ -2,9 +2,11 @@
 
     display: flex;
     height: 100px;
+
     justify-content: center;
     font-size: 18px;
     align-items: center;
+
 }
 
 button{
@@ -19,6 +21,7 @@ button{
 .pages{
     color: #991766;
 }
+
 
 button:hover{
     background-color: rgba(0, 0, 0, .1);

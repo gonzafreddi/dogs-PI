@@ -9,16 +9,18 @@
 
     border: none;
     font-size: 15px;
-    border-bottom: 1px solid black;
+    transition: all ease .3s;
     height: 100%;
     margin-bottom: 20px;
 }
-
-.cont option{
-    
+.cont select:hover{
+    cursor: pointer;
+    background-color: #991766;
+    color: white;
+    border-radius: 5px;
+   
 }
-
-.cont option:focus{
-    color:red;
-    margin-top: 20px;
+.cont option{
+    background-color: white;
+    color: black;
 }

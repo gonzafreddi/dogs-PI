@@ -25,7 +25,7 @@ const getByNameController = async(name)=>{
                     description: e?.description
                 }
              })
-           console.log(apiInfo.length);
+           console.log(apiInfo);
            
          if(finDb[0] === null && apiInfo.length === 0 ){
             console.log("entre");

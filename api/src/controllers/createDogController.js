@@ -18,12 +18,12 @@ const createDogController = async(dog)=>{
             years,
             
         })
-        console.log(temperaments)
+      
   
         const selectedTemperaments = await Temperaments.findOne({
                     where: { name: temperaments }
                 });
-        console.log(selectedTemperaments)
+       
             
         temperaments.forEach(async (t) => {
             let temperamentDB = await Temperaments.findAll({

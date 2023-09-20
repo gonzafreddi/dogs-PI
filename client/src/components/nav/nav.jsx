@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { resetFilter } from "../../redux/action/action";
 
 
-export default function Nav({onSearch}){
+export default function Nav({onSearch,nextHandler, prevHandler, currentItem, currentPage, setCurrentPage,pages}){
   const dispatch = useDispatch()
   const handleClick=()=>{
     console.log("click")
@@ -23,7 +23,7 @@ export default function Nav({onSearch}){
       <p className={styles.buttons} onClick={handleClick}>Reset filters</p>
       <NavLink className={styles.buttons} to={"/home"}> <p >Home</p></NavLink>
        <NavLink to={"/create"}className={styles.buttons}><p >Create</p></NavLink></div>
-        <FileterTemperaments/>
+        <FileterTemperaments nextHandler={nextHandler} pages={pages} currentItem={currentItem} prevHandler={prevHandler} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
         <SearchBar onSearch={onSearch}/>
         
     </div>)

@@ -14,7 +14,6 @@ const getNameDb = require("../controllers/getNameDb")
 
 const getBreedHandler = async (req, res)=>{
    try {
-    
     let apiResponse = await getBreedController()
     return res.status(200).send(apiResponse)
    } catch (error) {
