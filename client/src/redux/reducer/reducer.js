@@ -28,25 +28,15 @@ const reducer = (state=initialState, action)=>{
                 ...state,
                 types: action.payload
             }
-        // case FILTER_TEMPERAMENT:
-        //     let copy = state.allDogs
-        //     let filterTemp = action.payload === "all" ? copy : state.allDogs.filter((e) =>  e.temperaments.name.map(e=>e.name).includes(action.payload) ||e.temperament?.includes(action.payload))
-        //     console.log(filterTemp)
-        //     return{
-        //         ...state,
-        //         dogs: filterTemp
-        //     }
-            
-
         case FILTER_TEMPERAMENT:
         const copy = [...state.allDogs]; // Hacer una copia del array para no mutar el estado original
         const filterTemp = action.payload === "all" 
           ? copy 
           : copy.filter((e) => {
-              // Mapear los nombres de temperamentos y convertirlos a minúsculas
+       
               const temperamentNames = e.temperaments?.map((temperament) => temperament.name);
 
-              // Comprobar si el payload se encuentra en los nombres de temperamentos o en la cadena temperament
+              
               return (
                 temperamentNames?.includes(action.payload) ||
                 e.temperament?.includes(action.payload)
