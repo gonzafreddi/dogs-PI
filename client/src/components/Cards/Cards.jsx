@@ -8,7 +8,7 @@ import { useEffect } from "react"
 export default function Cards({nextHandler, prevHandler, currentItem, currentPage, pages}) {
 
 
-   console.log(pages)
+
     return (<>
     
       <div className={styles.contenedor}>

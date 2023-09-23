@@ -1,6 +1,45 @@
 .conteiner{
     background-color: black;
     color: white;
-    height: 120px;
+    height: 250px;
+}
+.icon{
+    text-decoration: none;
+    color: white;
+}
+
+.iconCont{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: x-large;
+    gap: 20px;
+}
+.contact{
     
+    display: flex;
+    border-bottom: #991766 solid .5px;
+    justify-content:space-around;
+
+}
+.contactChild{
+   margin-left: 5px;
+    text-align: left;
+    
+   
+}
+.contactChild i {
+    margin-right: 10px;
+    font-size: medium;
+}
+
+.about{
+
+    font-size: .8em;
+    width: 30%;
+    
+}
+.about h6{
+    margin-left: -400px;
 }

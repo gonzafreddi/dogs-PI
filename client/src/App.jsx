@@ -34,7 +34,7 @@ function App() {
   setCurrentPage(currentPage + 1)
   }
  const prevHandler=()=>{
-  console.log("prev")
+
   if(currentPage === 1)return
   setCurrentPage(currentPage - 1)
  }
@@ -42,10 +42,9 @@ function App() {
  useEffect( ()=>{
   dispatch(getAllDogs())
   dispatch(getTemperaments())
-  console.log("disparch de la app")
+
 }, [])
 
-console.log(currentItem)
   return (
     <div className="App">
       {location.pathname !== "/" && <Nav nextHandler={nextHandler} pages={pages} currentItem={currentItem} prevHandler={prevHandler} setCurrentPage={setCurrentPage} currentPage={currentPage}/>}

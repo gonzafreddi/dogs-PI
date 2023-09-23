@@ -76,7 +76,7 @@ export function postDog(payload) {
     return async function (dispatch) {
        try {
         const response = await axios.post('http://localhost:3001/breed/create', payload);
-        return console.log(response);;
+        return response
        } catch (error) {
         return error.message
        }

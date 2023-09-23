@@ -10,7 +10,7 @@ export default function Home({nextHandler, prevHandler, currentItem, currentPage
 const dispatch = useDispatch()
 
 useEffect(()=>{
-console.log("me monto");
+
 dispatch(getAllDogs())
 },[])
     

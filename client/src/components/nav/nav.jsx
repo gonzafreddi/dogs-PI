@@ -9,7 +9,7 @@ import { resetFilter } from "../../redux/action/action";
 export default function Nav({onSearch,nextHandler, prevHandler, currentItem, currentPage, setCurrentPage,pages}){
   const dispatch = useDispatch()
   const handleClick=()=>{
-    console.log("click")
+  
     dispatch(resetFilter())
   }
 

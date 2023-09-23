@@ -18,7 +18,7 @@ export default function Detail(){
         dispatch(getDogDetail())
       }
     },[name])
-   console.log(dogDetail.temperaments?.map(e=> e.name))
+  
     return (
         <div className={styles.conteiner}>
         

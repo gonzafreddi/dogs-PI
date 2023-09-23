@@ -4,7 +4,7 @@ export default function Card(props){
 const navigate = useNavigate()
 const dog = props
     const handleClick=()=>{
-        console.log("click")
+      
         navigate(`/detail/${props.name}`)
     }
 
