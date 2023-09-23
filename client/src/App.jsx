@@ -63,25 +63,3 @@ function App() {
 
 export default App;
 
-
-
-
-
-//   const onSearch = async (name)=>{
-//     try {
-//     const url = `http://localhost:3001/breed/search/name?name=${name}` 
-//     const response = await axios(url)
-//     console.log(`log del nombre en onsearch`, response.data);
-//     if(response.data.name){
-//       setFindDog(response.data)
-//       navigate("/search")
-//     }
-    
-    
-//     console.log(findDog);
-//     } catch (error) {
-//         console.error("Error en la búsqueda:",name, error.message), alert("perro no encontrado")
-//     }
-// }
-
-
