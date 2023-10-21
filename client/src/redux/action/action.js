@@ -1,11 +1,13 @@
 import axios from "axios"
 import { GET_ALL_DOGS , GET_BY_NAME, GET_TEMPERAMENTS, FILTER_TEMPERAMENT, ORDER_BY_NAME, OREDE_BY_WEIGHT, GET_DETAIL_API, GET_DETAIL_DB, GET_ORIGIN_API, GET_ORIGIN_DB, RESET_FILTER} from "./action_types"
 
+axios.defaults.baseURL = "https://dogs-pi-production-af12.up.railway.app/";
+
 export const getAllDogs = ()=>{
 return async(dispatch)=>{
     try {
-        const  url = "http://localhost:3001/breed/get/all"
-        const getDogs = await axios(url)
+      
+        const getDogs = await axios("/breed/get/all")
         return dispatch({
             type: GET_ALL_DOGS, 
             payload: getDogs.data
@@ -20,7 +22,7 @@ export const getByName =(name)=>{
     if(name){
         return async(dispatch)=>{
             try {
-                const  response  = await axios.get(`http://localhost:3001/breed/search/name?name=${name}`);
+                const  response  = await axios.get(`/breed/search/name?name=${name}`);
                 console.log("log del action", response.data)
                 return dispatch({
                     type: GET_BY_NAME,
@@ -38,8 +40,8 @@ export const getByName =(name)=>{
 export const getTemperaments = ()=>{
     return async(dispatch)=>{
         try {
-            let url = "http://localhost:3001/temperament"
-            const response = await axios(url)
+           
+            const response = await axios("/temp")
             console.log(response)
             return dispatch({
                 type: GET_TEMPERAMENTS,
@@ -76,7 +78,7 @@ return {
 export function postDog(payload) {
     return async function (dispatch) {
        try {
-        const response = await axios.post('http://localhost:3001/breed/create', payload);
+        const response = await axios.post('/breed/create', payload);
         return response
        } catch (error) {
         return error.message
@@ -87,8 +89,8 @@ export function postDog(payload) {
 export const getDogDetail=(name)=>{
 return async function (dispatch){
     try {
-        let url = `http://localhost:3001/breed/search/name?name=${name}`
-        const response = await axios(url)
+     
+        const response = await axios(`/breed/search/name?name=${name}`)
         if(Array.isArray(response.data)){
             return dispatch({
                 type: GET_DETAIL_API,
@@ -114,8 +116,8 @@ export const resetFilter = ()=>{
 export const getOriginAction = (origin)=>{
     return async function (dispatch){
         try {
-            const urlApi = "http://localhost:3001/breed"
-            const urlDb  = "http://localhost:3001/breed/api/db"
+            const urlApi = "/breed"
+            const urlDb  = "/breed/api/db"
             if(origin === "api"){
                 let responseApi = await axios(urlApi)
                 console.log("api action")

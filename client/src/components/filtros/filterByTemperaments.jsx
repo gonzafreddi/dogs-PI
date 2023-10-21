@@ -6,12 +6,12 @@
     import { orderLetra } from "../../redux/action/action"
     import { orderWheight } from "../../redux/action/action"
     
-    export default function FileterTemperaments({nextHandler, prevHandler, currentItem, currentPage, setCurrentPage,pages}){
+    export default function FileterTemperaments({ setCurrentPage}){
 
       
 
 
-        const types = useSelector((state)=> state.types)
+        const types = useSelector((state)=> state?.types)
    
         const [selectedType, setSelectedType] = useState('')
         const [order, setOrder] = useState("")
@@ -37,12 +37,13 @@
 
         }
 
-        const getOrigin = (e)=>{
-            const selectedValue = e.target.value
-            setOrigin(selectedValue)
-            console.log(selectedValue)
-            dispatch(getOriginAction(origin))
+        const getOrigin = (e) => {
+            const selectedValue = e.target.value;
+            setOrigin(selectedValue);
+            console.log(selectedValue);
+            dispatch(getOriginAction(selectedValue)); // Usar selectedValue en lugar de origin
         }
+        
         
         return(<div className={styles.cont}>
         <div >
@@ -51,7 +52,7 @@
         <option value="" disabled selected hidden>Seleccione una raza</option>
          <option selected value="all">all</option>
          {types?.map((type, index) =>
-         <option key={index} value={type}>{type}</option>
+         <option key={type.id} value={type.name}>{type.name}</option>
           )}
        </select>
        </div>
