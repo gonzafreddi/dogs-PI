@@ -15,12 +15,14 @@ try {
  const uniqueWordsSet = new Set(combinedString.split(", "));
  const uniqueWordsArray = [...uniqueWordsSet];
 
+
  for(const nameTemp of uniqueWordsArray){
     await Temperaments.findOrCreate({where:{name: nameTemp}})
  }
 
+ const temperamentsFromDatabase = await Temperaments.findAll();
 
- return uniqueWordsArray
+ return temperamentsFromDatabase
 } catch (error) {
     return error.message
 }

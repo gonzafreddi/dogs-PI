@@ -9,7 +9,7 @@ let initialState = {
 }
 
 const reducer = (state=initialState, action)=>{
-   
+   console.log(state)
     switch (action.type) {
         case GET_ALL_DOGS:
             return{

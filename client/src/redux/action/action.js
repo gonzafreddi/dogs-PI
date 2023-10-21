@@ -40,6 +40,7 @@ export const getTemperaments = ()=>{
         try {
             let url = "http://localhost:3001/temperament"
             const response = await axios(url)
+            console.log(response)
             return dispatch({
                 type: GET_TEMPERAMENTS,
                 payload: response.data
